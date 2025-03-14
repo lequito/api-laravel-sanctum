@@ -41,9 +41,18 @@ class ClientController extends Controller{
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show(string $id){
+        //show client detail
+        $client = Client::find($id);
+        //return a response
+        if ($client) {
+            return response()->json($client, 200);
+        } else {
+            return response()->json([
+                'message' => 'Cliente não encontrado'
+            ], 404);
+        }
+        
     }
 
     /**
